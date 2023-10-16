@@ -1,5 +1,3 @@
-<!-- templates/index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,19 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popup Example</title>
     <script type="text/javascript">
-        function openPopup(url) {
-            var newWindow = window.open(url, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=600');
+        function openPopup(event) {
+            event.preventDefault();  // Preventing the default action (navigation)
+            
+            // Correcting the way the URL is passed to the JavaScript function
+            var url = "{{ url_for('login', _external=True) }}";
+
+            // Opening the new window
+            var newWindow = window.open(url, 'targetWindow', 
+                'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=600');
+            
+            // Focusing the new window if possible
             if (window.focus) {
                 newWindow.focus();
             }
-            return false;
         }
     </script>
 </head>
 <body>
-
-    <!-- The URL can be an external OAuth link or any URL you want to open in a popup -->
-    <a href="#" onclick="return openPopup('/login');"><img width=200px src="{{ url_for('static', filename='img/instagramLogin.png') }}"></img></a>
-
+    <!-- Inline 'onclick' event with 'event' argument -->
+    <a href="#" onclick="openPopup(event);">
+        <img width="200" src="{{ url_for('static', filename='img/instagramLogin.png') }}" alt="Login">
+    </a>
 </body>
 </html>

