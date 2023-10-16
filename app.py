@@ -72,4 +72,4 @@ def login():
 
 if __name__ == '__main__':
     # Running the app on the local development server
-    app.run(debug=False)
+    app.run(debug=True)
