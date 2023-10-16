@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Example</title>
+    <script type="text/javascript">
+        function openPopup(url) {
+            var newWindow = window.open(url, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=600');
+            if (window.focus) {
+                newWindow.focus();
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+
+    <!-- The URL can be an external OAuth link or any URL you want to open in a popup -->
+    <a href="#" onclick="return openPopup('/login');"><img width=200px src="{{ url_for('static', filename='img/instagramLogin.png') }}"></img></a>
+
+</body>
+</html>
