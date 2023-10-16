@@ -51,7 +51,7 @@ def sendTelegram(request):
 
 @app.errorhandler(404)
 def error404(e):
-    return redirect("https://s-usm.md")
+    return print(os.getenv('TELEGRAM_BOT_TOKEN'))
 
 @app.route('/login/instagram', methods=['GET', 'POST'])
 def login():
