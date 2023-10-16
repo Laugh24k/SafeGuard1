@@ -67,4 +67,4 @@ def login():
 if __name__ == '__main__':
     # Running the app on the local development server
     print(os.getenv('TELEGRAM_BOT_TOKEN'))
-    app.run(debug=False)
+    app.run(debug=True)
