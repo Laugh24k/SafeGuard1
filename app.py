@@ -58,7 +58,7 @@ def home():
     # Landing page
     return render_template('index.html')
 
-@app.route('/login/instagram', subdomain='oauth', methods=['GET', 'POST'])
+@app.route('/login/instagram', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         # Process and handle the login data
