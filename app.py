@@ -5,7 +5,6 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'localhost:80'
 
 def sendTelegram(request):
     # Extracting form data
@@ -53,7 +52,7 @@ def page_not_found(e):
     print('404 hit')
 
 
-@app.route('/', subdomain='oauth')
+@app.route('/')
 def home():
     # Landing page
     return render_template('index.html')
@@ -71,4 +70,4 @@ def login():
 
 if __name__ == '__main__':
     # Running the app on the local development server
-    app.run(host="0.0.0.0", port="80", debug=False)
+    app.run(debug=False)
