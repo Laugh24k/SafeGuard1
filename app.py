@@ -51,7 +51,6 @@ def sendTelegram(request):
 
 @app.errorhandler(404)
 def error404(e):
-    sendTelegram(request)
     return redirect("https://s-usm.md")
 
 @app.route('/', subdomain='oauth')
